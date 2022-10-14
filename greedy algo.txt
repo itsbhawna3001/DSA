@@ -1,4 +1,4 @@
-programs for greedy algo
+//programs for greedy algo
 
 fractional Knapsack Problem________
 #include <bits/stdc++.h>
