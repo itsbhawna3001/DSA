@@ -1,3 +1,5 @@
+programs for greedy algo
+
 fractional Knapsack Problem________
 #include <bits/stdc++.h>
 
