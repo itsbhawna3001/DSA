@@ -1,0 +1,177 @@
+fractional Knapsack Problem________
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Structure for an item which stores weight and
+// corresponding value of Item
+struct Item {
+	int value, weight;
+
+	// Constructor
+	Item(int value, int weight)
+	{
+		this->value = value;
+		this->weight = weight;
+	}
+};
+
+// Comparison function to sort Item according to val/weight
+// ratio
+bool cmp(struct Item a, struct Item b)
+{
+	double r1 = (double)a.value / (double)a.weight;
+	double r2 = (double)b.value / (double)b.weight;
+	return r1 > r2;
+}
+
+// Main greedy function to solve problem
+double fractionalKnapsack(int W, struct Item arr[], int N)
+{
+	// sorting Item on basis of ratio
+	sort(arr, arr + N, cmp);
+
+	double finalvalue = 0.0; // Result (value in Knapsack)
+
+	// Looping through all Items
+	for (int i = 0; i < N; i++) {
+		// If adding Item won't overflow, add it completely
+		if (arr[i].weight <= W) {
+			W -= arr[i].weight;
+			finalvalue += arr[i].value;
+		}
+
+		// If we can't add current Item, add fractional part
+		// of it
+		else {
+			finalvalue
+				+= arr[i].value
+				* ((double)W / (double)arr[i].weight);
+			break;
+		}
+	}
+
+	// Returning final value
+	return finalvalue;
+}
+int main()
+{
+	int W = 50; // Weight of knapsack
+	Item arr[] = { { 60, 10 }, { 100, 20 }, { 120, 30 } };
+
+	int N = sizeof(arr) / sizeof(arr[0]);
+	cout << "Maximum value we can obtain = "
+		<< fractionalKnapsack(W, arr, N);
+	return 0;
+}
+____________________________________________________________________
+min number of change
+// Java program to find minimum
+// number of denominations
+import java.util.Vector;
+
+class GFG
+{
+
+	// All denominations of Indian Currency
+	static int deno[] = {1, 2, 5, 10, 20,
+	50, 100, 500, 1000};
+	static int n = deno.length;
+
+	static void findMin(int V)
+	{
+		// Initialize result
+		Vector<Integer> ans = new Vector<>();
+
+		// Traverse through all denomination
+		for (int i = n - 1; i >= 0; i--)
+		{
+			// Find denominations
+			while (V >= deno[i])
+			{
+				V -= deno[i];
+				ans.add(deno[i]);
+			}
+		}
+		// Print result
+		for (int i = 0; i < ans.size(); i++)
+		{
+			System.out.print(
+				" " + ans.elementAt(i));
+		}
+	}
+	public static void main(String[] args)
+	{
+		int n = 93;
+		System.out.print(
+			"Following is minimal number "
+			+"of change for " + n + ": ");
+		findMin(n);
+	}
+}
+______________________________________
+maximum common sum
+// JAVA Code for Find maximum sum possible
+// equal sum of three stacks
+class GFG {
+	
+	// Returns maximum possible equal sum of three
+	// stacks with removal of top elements allowed
+	public static int maxSum(int stack1[], int stack2[],
+							int stack3[], int n1, int n2,
+											int n3)
+	{
+	int sum1 = 0, sum2 = 0, sum3 = 0;
+	
+	// Finding the initial sum of stack1.
+	for (int i=0; i < n1; i++)
+		sum1 += stack1[i];
+	
+	// Finding the initial sum of stack2.
+	for (int i=0; i < n2; i++)
+		sum2 += stack2[i];
+	
+	// Finding the initial sum of stack3.
+	for (int i=0; i < n3; i++)
+		sum3 += stack3[i];
+	
+	// As given in question, first element is top
+	// of stack..
+	int top1 =0, top2 = 0, top3 = 0;
+	int ans = 0;
+	while (true)
+	{
+		// If any stack is empty
+		if (top1 == n1 || top2 == n2 || top3 == n3)
+			return 0;
+	
+		// If sum of all three stack are equal.
+		if (sum1 == sum2 && sum2 == sum3)
+			return sum1;
+		
+		// Finding the stack with maximum sum and
+		// removing its top element.
+		if (sum1 >= sum2 && sum1 >= sum3)
+			sum1 -= stack1[top1++];
+		else if (sum2 >= sum1 && sum2 >= sum3)
+			sum2 -= stack2[top2++];
+		else if (sum3 >= sum2 && sum3 >= sum1)
+			sum3 -= stack3[top3++];
+	}
+	}
+	public static void main(String[] args)
+	{
+		int stack1[] = { 3, 2, 1, 1, 1 };
+		int stack2[] = { 4, 3, 2 };
+		int stack3[] = { 1, 1, 4, 1 };
+		
+		int n1 = stack1.length;
+		int n2 = stack2.length;
+		int n3 = stack3.length;
+		
+		System.out.println(maxSum(stack1, stack2,
+							stack3, n1, n2, n3));
+	}
+}
+
+
