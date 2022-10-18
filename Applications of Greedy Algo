@@ -1,0 +1,11 @@
+
+Most networking algorithms use the greedy approach. Here is a list of few of them −
+Some applications of greedy Algorithm
+Travelling Salesman Problem
+Prim's Minimal Spanning Tree Algorithm
+Kruskal's Minimal Spanning Tree Algorithm
+Dijkstra's Minimal Spanning Tree Algorithm
+Graph - Map Coloring
+Graph - Vertex Cover
+Knapsack Problem
+Job Scheduling Problem
