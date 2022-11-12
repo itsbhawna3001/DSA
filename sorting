@@ -1,0 +1,77 @@
+/*bubble sort*/
+
+
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        int[] arr={5,3,1,2,4};
+        int n=arr.length;
+        for(int i=0;i<n-1;i++){
+        //flag stops the sorting in case arr beech mei sort ho gya
+            boolean flag=true;
+            for(int j=0;j<n-1-i;j++){
+                if (arr[j]>arr[j+1]){
+                    flag=false;
+                    // swaping without extra variable 
+                    arr[j]+=arr[j+1];
+                    arr[j+1]=arr[j]-arr[j+1];
+                    arr[j]=arr[j]-arr[j+1];
+                }
+            }
+            if (flag==true){
+                break;
+            }
+        }
+        for (int i:arr){
+            System.out.println(i);
+        }
+    }
+}
+
+/* SELECTION SORT*/
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        int[] arr={5,3,1,2,4};
+        int n=arr.length;
+        for(int i=0;i<n-1;i++){
+            int min=i;
+            for (int j=i+1;j<n;j++){
+                if (arr[j]<arr[min]){
+                    min=j;
+                }
+            }
+            if (min!=i){
+                arr[i]=arr[i]+arr[min];
+                arr[min]=arr[i]-arr[min];
+                arr[i]=arr[i]-arr[min];
+            }
+        }
+        for (int i:arr){
+            System.out.println(i);
+        }
+    }
+}
+
+/*INSERTION SORT*/
+class HelloWorld {
+    public static void main(String[] args) {
+        int[] arr={5,3,1,2,4};
+        int n=arr.length;
+        for(int i=0;i<n-1;i++){
+            int temp=arr[i];
+            int j=i;
+            while (j>0 && arr[j-1]>temp){
+                arr[j]=arr[j-1];
+                j--;
+            }
+            arr[j]=temp;
+        }
+        for (int i:arr){
+            System.out.println(i);
+        }
+    }
+}
+BUBBLE SORT n^2
+SELECTION SORT N^2
+INSERTION SORT N^2
